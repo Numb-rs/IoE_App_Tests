@@ -7,7 +7,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.robolectric.RobolectricTestRunner;
+import org.robolectric.RobolectricGradleTestRunner;
 import org.robolectric.RuntimeEnvironment;
 import org.robolectric.annotation.Config;
 
@@ -29,8 +29,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(RobolectricTestRunner.class)
-@Config(constants = BuildConfig.class)
+@RunWith(RobolectricGradleTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21)
 public class BrowserPresenterTest {
 
     private BrowserPresenter presenter;
@@ -83,7 +83,7 @@ public class BrowserPresenterTest {
     }
 
     @Test
-    public void onOpenClickedFavorite_modelGetAllDefaultWebsiteCalledWithCorrectParameter() throws Exception {
+    public void onOpenClickedFavorite_modelGetAllDefaultWebsiteCalledAndViewGoToURLCalledWithCorrectParameter() throws Exception {
         presenter.onOpenClickedFavorite(name);
         verify(model).getAllDefaultWebsites();
         verify(activity).goToURL(url);

@@ -106,7 +106,7 @@ public class BrowserActivityTest {
     }
 
     @Test
-    public void onOptionsItemSelectedAndAddChatOption_FragmentCreated() throws Exception {
+    public void onOptionsItemSelected_FragmentCreated() throws Exception {
         MenuItem menuItem = new RoboMenuItem(R.id.change_default_websites);
         activity.onOptionsItemSelected(menuItem);
         assertNotNull(activity.getFragment());
@@ -114,13 +114,14 @@ public class BrowserActivityTest {
 
     @Test
     public void onClickOpenSearch_presentersOnOpenClickedSearchCalledWithCorrectParameters() throws Exception {
+        String searchTerm = "searchTerm";
         Button button = (Button) activity.findViewById(R.id.button_open_website_search);
+        EditText editText = (EditText) activity.findViewById(R.id.editText_searchterm);
+        editText.setText(searchTerm);
         button.performClick();
 
         TextView textView = (TextView) activity.findViewById(R.id.search_website_name);
         String name = textView.getText().toString();
-        EditText editText = (EditText) activity.findViewById(R.id.editText_searchterm);
-        String searchTerm = editText.getText().toString();
         verify(presenter).onOpenClickedSearch(name, searchTerm);
     }
 
@@ -145,7 +146,8 @@ public class BrowserActivityTest {
     public void onClickOpenURL_presentersOnOpenClickedURLCalledWithCorrectParameters() throws Exception {
         Button button = (Button) activity.findViewById(R.id.button_url_open);
         EditText editText = (EditText) activity.findViewById(R.id.editText_browser_url);
-        String url = editText.getText().toString();
+        String url = "url.com";
+        editText.setText(url);
         button.performClick();
         verify(presenter).onOpenClickedURL(url);
     }
@@ -154,7 +156,8 @@ public class BrowserActivityTest {
     public void onClickDownloadURL_presentersOnDownloadClickedURLCalledWithCorrectParameters() throws Exception {
         Button button = (Button) activity.findViewById(R.id.button_url_download);
         EditText editText = (EditText) activity.findViewById(R.id.editText_browser_url);
-        String url = editText.getText().toString();
+        String url = "url.com";
+        editText.setText(url);
         button.performClick();
         verify(presenter).onDownloadClickedURL(url);
     }
