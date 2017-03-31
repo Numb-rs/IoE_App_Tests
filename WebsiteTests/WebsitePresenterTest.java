@@ -29,8 +29,6 @@ public class WebsitePresenterTest {
     @Mock
     WebsiteModel model;
 
-    String name, url, content;
-
     @Before
     public void setUp() throws Exception {
         context = RuntimeEnvironment.application.getApplicationContext();
