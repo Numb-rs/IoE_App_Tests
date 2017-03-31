@@ -79,7 +79,7 @@ public class MessageTest {
 
     @Test
     public void createMessageThatsMine_correctIsMine() throws Exception {
-        // myUserCode = senderID
+        // myUserCode is the same as senderID
         Message msg = new Message(id, senderID, receiverID, content, isEncrypted, myUserCode);
         assertTrue(msg.isMine());
     }
