@@ -93,6 +93,18 @@ public class WebsiteModelTest {
         assertEquals(w.getContent(), newContent);
     }
 
+    @Test
+    public void updateDefaultWebsite_getsUpdatedInDatabaseAndObserversGetNotified() throws Exception {
+        String newUrl = "newUrl";
+        String newName = "newName";
+        model.addDefaultWebsite(name, url, content);
+        model.updateDefaultWebsite(newName, url, newUrl);
+        Website w = model.getDefaultWebsiteByURL(newUrl);
+        verify(o, times(2)).update(DataType.WEBSITE);
+        assertEquals(w.getName(), newName);
+        assertEquals(w.getUrl(), newUrl);
+    }
+
     @After
     public void tearDown() throws Exception {
         model.close();

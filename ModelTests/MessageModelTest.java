@@ -135,7 +135,7 @@ public class MessageModelTest {
         model.addChat(userCode, encrypted);
         int amountDeleted = model.deleteChat(userCode);
         verify(o, times(3)).update(DataType.CHAT);
-        verify(o, times(1)).update(DataType.CONTACT);
+        verify(o, times(3)).update(DataType.CONTACT);
         assertEquals(amountDeleted, 1);
         assertNull(model.getChatByID(userCode));
     }
