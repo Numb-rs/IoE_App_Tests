@@ -15,7 +15,6 @@ import internetofeveryone.ioe.BuildConfig;
 import internetofeveryone.ioe.Main.MainActivity;
 import internetofeveryone.ioe.Main.MainPresenter;
 
-import static junit.framework.Assert.assertNotNull;
 import static org.mockito.Mockito.verify;
 
 @RunWith(RobolectricTestRunner.class)
@@ -53,31 +52,5 @@ public class MainPresenterTest {
         presenter.attachView(mainActivity);
         presenter.onMessengerClicked();
         verify(mainActivity).goToMessenger();
-    }
-
-    /* TODO: can't test that outside of the IoE
-    @Test
-    public void setUp_test() throws Exception {
-        presenter.attachView(mainActivity);
-        presenter.setUp();
-    }
-    */
-
-    @Test
-    public void viewNotAttachedOnBrowserClicked_newViewGetsAttached() throws Exception {
-        presenter.onBrowserClicked();
-        assertNotNull(presenter.getView());
-    }
-
-    @Test
-    public void viewNotAttachedOnDownloadsClicked_newViewGetsAttached() throws Exception {
-        presenter.onDownloadsClicked();
-        assertNotNull(presenter.getView());
-    }
-
-    @Test
-    public void viewNotAttachedOnMessengerClicked_newViewGetsAttached() throws Exception {
-        presenter.onMessengerClicked();
-        assertNotNull(presenter.getView());
     }
 }
